@@ -191,35 +191,52 @@
   }
 
   /* ================= SKIN: EDITORIAL ================= */
-  :root[data-skin="editorial"]{--bg:#F3EFE7;--ink:#151412;--muted:#7A736A;--line:#DCD5C8;--serif:"Fraunces","Playfair Display",Georgia,"Times New Roman",serif}
+  :root[data-skin="editorial"]{--bg:#F3EFE7;--surface:#EAE4D8;--ink:#151412;--muted:#7A736A;--line:#DCD5C8;--serif:"Fraunces","Playfair Display",Georgia,"Times New Roman",serif}
   :root[data-skin="editorial"] .progress,:root[data-skin="editorial"] .grid-btn{display:none}
-  :root[data-skin="editorial"] .show{scroll-snap-type:none}
   :root[data-skin="editorial"] .brand{font-family:var(--serif);font-weight:400;font-size:28px;letter-spacing:0}
   :root[data-skin="editorial"] .brand b{font-weight:600;font-style:italic}
   :root[data-skin="editorial"] .social{color:var(--muted)}
   :root[data-skin="editorial"] .dropdown{background:var(--bg)}
-  .ed-hero{min-height:70vh;display:grid;align-content:end;padding:0 clamp(16px,8vw,140px) 8vh;border-bottom:1px solid var(--line)}
+  :root[data-skin="editorial"] .menu-btn{mix-blend-mode:normal}
+  /* pasos: una pantalla por elemento; en modo fade, scroll encajado */
+  :root[data-skin="editorial"][data-nav="fade"] .show{scroll-snap-type:y mandatory}
+  :root[data-skin="editorial"][data-nav="scroll"] .show{scroll-snap-type:none}
+  .step{min-height:100%;box-sizing:border-box;scroll-snap-align:start;display:grid;align-content:center;padding:calc(env(safe-area-inset-top,0px) + 100px) clamp(96px,10vw,180px) 80px}
+  [data-nav="scroll"] .step{min-height:0;padding-top:40px;padding-bottom:40px}
+  [data-nav="scroll"] .ed-hero{min-height:70vh}
+  /* fundido */
+  .fx{opacity:0;transform:translateY(26px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1)}
+  .step.in .fx{opacity:1;transform:none}
+  .step .fx:nth-child(2),.step a .fx:nth-child(2){transition-delay:.12s}
+  .step .fx:nth-child(3),.step a .fx:nth-child(3){transition-delay:.24s}
+  .step img.fx{transform:translateY(26px) scale(.985)}
+  .step.in img.fx{transform:none}
+  @media (prefers-reduced-motion:reduce){.fx{opacity:1;transform:none}}
+  /* hero */
   .ed-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(56px,10vw,160px);line-height:.95;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
   .ed-hero p{margin:0;font-size:clamp(15px,1.3vw,19px);color:var(--muted);font-style:italic;font-family:var(--serif)}
-  .ed-vert{padding:8vh clamp(16px,8vw,140px) 4vh;border-bottom:1px solid var(--line)}
-  .ed-vt{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin:0 0 6vh;font-size:13px;letter-spacing:.2em;text-transform:uppercase;font-weight:500}
-  .ed-vt a{border-bottom:1px solid var(--ink)}
-  .ed-vt small{font-size:13px;letter-spacing:0;text-transform:none;color:var(--muted);font-style:italic;font-family:var(--serif)}
-  .entry{padding:0 0 9vh}
-  .entry .meta{display:flex;justify-content:space-between;font-size:13px;color:var(--muted);border-top:1px solid var(--ink);padding-top:12px;margin-bottom:10px}
-  .entry h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,96px);line-height:1;letter-spacing:-.02em;margin:0 0 28px;text-wrap:balance}
-  .entry img{width:100%;aspect-ratio:3/2;object-fit:cover;transition:opacity .3s}
-  .entry a:hover img{opacity:.92}
+  .ed-hero .caps{margin-top:28px;font-style:normal;font-family:var(--font);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
+  /* portada de vertical */
+  .ed-vert .n{font-size:13px;letter-spacing:.2em;color:var(--muted);margin-bottom:14px}
+  .ed-vert h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(64px,12vw,200px);line-height:.92;letter-spacing:-.03em}
+  .ed-vert h2 a{border-bottom:2px solid transparent}
+  .ed-vert h2 a:hover{font-style:italic;border-color:var(--ink)}
+  .ed-vert .sub{margin:22px 0 0;font-family:var(--serif);font-style:italic;font-size:clamp(16px,1.5vw,22px);color:var(--muted)}
+  /* proyecto */
+  .entry .meta{display:flex;justify-content:space-between;gap:16px;font-size:13px;color:var(--muted);border-top:1px solid var(--ink);padding-top:12px;margin-bottom:10px}
+  .entry h3{font-family:var(--serif);font-weight:400;font-size:clamp(40px,6vw,96px);line-height:1;letter-spacing:-.02em;margin:0 0 24px;text-wrap:balance}
+  .entry img{width:100%;max-height:58vh;object-fit:cover;display:block}
   .entry a:hover h3{font-style:italic}
-  :root[data-skin="editorial"] .end{padding:0 clamp(16px,8vw,140px)}
-  :root[data-skin="editorial"] .end .inner{width:100%;max-width:1100px;margin:0 auto;padding:10vh 0 14vh}
+  /* sobre mí */
+  :root[data-skin="editorial"] .end .inner{width:100%;max-width:1100px;margin:0 auto;padding:0}
   :root[data-skin="editorial"] .end h2{font-family:var(--serif);font-weight:400}
   :root[data-skin="editorial"] .end img{filter:none}
   :root[data-skin="editorial"] .head h2,:root[data-skin="editorial"] .cascade .t b{font-family:var(--serif);font-weight:400}
   :root[data-skin="editorial"] .cascade img,:root[data-skin="editorial"] .thumbs img{filter:none}
   :root[data-skin="editorial"] .head .x{border-color:var(--ink)}
   @media (max-width:700px){
-    .ed-hero{min-height:60vh}
+    .step{padding:calc(env(safe-area-inset-top,0px) + 84px) 20px 90px}
+    .entry img{max-height:50vh}
     :root[data-skin="editorial"] .social{display:none}
   }
 </style>
@@ -308,20 +325,37 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
   }
 
   if (SKIN === 'editorial') {
-    // editorial: scroll normal, entradas grandes agrupadas por vertical
-    $('show').innerHTML = `<header class="ed-hero" id="s0" data-i="0"><h1>${C.nombre}</h1><p>${C.rol} · ${C.ciudad}</p></header>` +
-      V.map((v,vi) => `
-      <section class="ed-vert" id="s${vi}">
-        <h2 class="ed-vt"><a href="#s${vi}" data-vert="${vi}">${v.titulo}</a><small>${v.subtitulo || ''}</small></h2>
-        ${v.proyectos.map((p,pi) => `
-        <article class="entry">
-          <a href="#s${vi}" data-open="${vi}:${pi}">
-            <div class="meta"><span>${p.cliente || ''}</span><span>${p.ano}</span></div>
-            <h3>${p.titulo}</h3>
-            <img src="${p.imagenes[0]}" alt="${p.titulo}" loading="lazy">
-          </a>
-        </article>`).join('')}
-      </section>`).join('') + endHTML('end');
+    const FADE = C.navegacion !== 'scroll';
+    document.documentElement.dataset.nav = FADE ? 'fade' : 'scroll';
+    const step = (cls, inner, id) => `<section class="step ${cls}" ${id ? `id="${id}"` : ''}>${inner}</section>`;
+    $('show').innerHTML =
+      step('ed-hero', `<h1 class="fx">${C.nombre}</h1><p class="fx">${C.rol} · ${C.ciudad}</p><p class="fx caps">${C.capacidades}</p>`, 's0') +
+      V.map((v,vi) =>
+        step('ed-vert', `<div class="fx n">${pad(vi+1)}</div><h2 class="fx"><a href="#s${vi}" data-vert="${vi}">${v.titulo}</a></h2><p class="fx sub">${v.subtitulo || ''} · ${v.proyectos.length} ${v.proyectos.length === 1 ? 'proyecto' : 'proyectos'}</p>`, 's'+vi) +
+        v.proyectos.map((p,pi) =>
+          step('entry', `<a href="#s${vi}" data-open="${vi}:${pi}">
+            <div class="fx meta"><span>${v.titulo}</span><span>${p.cliente || ''}</span><span>${p.ano}</span></div>
+            <h3 class="fx">${p.titulo}</h3>
+            <img class="fx" src="${p.imagenes[0]}" alt="${p.titulo}" loading="lazy">
+          </a>`)).join('')
+      ).join('') +
+      step('end', `<div class="inner">
+        <img class="fx" src="${C.retrato}" alt="${C.nombre}">
+        <div>
+          <h2 class="fx">${C.rol}<br>en ${C.ciudad}</h2>
+          <p class="fx">${C.bio}</p>
+          <p class="fx caps">${C.capacidades}</p>
+          <a class="fx mail" href="mailto:${C.email}">${C.email}</a>
+          <div class="fx end-links">${Object.entries(C.enlaces).map(([k,v]) => `<a href="${v}" target="_blank" rel="noopener">${k}</a>`).join('')}</div>
+        </div>
+      </div>`, 's'+V.length);
+    // cada paso aparece con fundido al entrar (y vuelve a fundirse si se sube)
+    const steps = [...document.querySelectorAll('.step')];
+    if (FADE && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('in', e.intersectionRatio > .5)), {root: $('show'), threshold: [.5]});
+      steps.forEach(st => io.observe(st));
+    } else steps.forEach(st => st.classList.add('in'));
+    steps[0].classList.add('in');
   }
 
   // rejilla global: todos los proyectos de todas las verticales

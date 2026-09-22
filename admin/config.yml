@@ -29,6 +29,7 @@ collections:
         format: "json"
         fields:
           - { label: "Estilo de la web", name: "skin", widget: "select", options: [{label: "Showcase (un proyecto por pantalla, fondo negro)", value: "showcase"}, {label: "Portada (columna con la diseñadora + bloques de verticales, sin scroll)", value: "mosaico"}, {label: "Editorial (fondo claro, tipografía con serifa, scroll)", value: "editorial"}], default: "showcase" }
+          - { label: "Navegación (solo estilo Editorial)", name: "navegacion", widget: "select", options: [{label: "Por pasos con fundido (un poco de scroll y cambia la pantalla)", value: "fade"}, {label: "Scroll normal", value: "scroll"}], default: "fade", required: false }
           - { label: "Nombre arriba a la izquierda (marca)", name: "marca", widget: "string", hint: "Pon entre asteriscos lo que quieras en negrita. Ej: Art by *Luzia*" }
           - { label: "Nombre completo", name: "nombre", widget: "string" }
           - { label: "Rol", name: "rol", widget: "string", hint: "Ej. Directora de arte" }
