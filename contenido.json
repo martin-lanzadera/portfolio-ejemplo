@@ -1,0 +1,125 @@
+{
+  "marca": "Art by Luzia",
+  "nombre": "Lucía Serrano",
+  "rol": "Directora de arte",
+  "ciudad": "Madrid",
+  "email": "hola@luciaserrano.com",
+  "enlaces": [
+    {
+      "nombre": "instagram",
+      "url": "https://instagram.com/"
+    },
+    {
+      "nombre": "linkedin",
+      "url": "https://linkedin.com/"
+    },
+    {
+      "nombre": "behance",
+      "url": "https://behance.net/"
+    }
+  ],
+  "retrato": "imagenes/retrato.jpg",
+  "bio": "Doce años dirigiendo arte en agencia y en cliente. Campañas de moda para retail nacional, identidad para instituciones culturales y lanzamientos digitales con equipos de hasta quince personas. Trabajo desde el concepto hasta la producción.",
+  "capacidades": "Concepto · Campañas 360 · Identidad · Editorial · Dirección de shooting · Packaging",
+  "verticales": [
+    {
+      "titulo": "Branding",
+      "subtitulo": "Marcas y sistemas de identidad",
+      "portada": "",
+      "proyectos": [
+        {
+          "titulo": "Coup de Cœur",
+          "cliente": "Coup de Cœur",
+          "sector": "Coctelería",
+          "ano": "2025",
+          "rol": "Dirección de arte e identidad",
+          "descripcion": "Identidad completa para una coctelería de autor: logotipo caligráfico, carta, bandejas grabadas y cristalería. Concepto, dirección del shooting de producto y adaptación a piezas físicas.",
+          "resultado": "Apertura con la identidad implantada en todos los soportes del local.",
+          "imagenes": [
+            {
+              "imagen": "imagenes/branding/branding-04.jpg"
+            },
+            {
+              "imagen": "imagenes/branding/branding-01.jpg"
+            },
+            {
+              "imagen": "imagenes/branding/branding-02.jpg"
+            },
+            {
+              "imagen": "imagenes/branding/branding-03.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Identity",
+      "subtitulo": "Identidad visual de producto",
+      "portada": "",
+      "proyectos": [
+        {
+          "titulo": "Tokyo",
+          "cliente": "Tokyo",
+          "sector": "Cosmética",
+          "ano": "2024",
+          "rol": "Identidad visual y packaging",
+          "descripcion": "Sistema de identidad para una marca de cosmética: logotipo, mancha de color como elemento gráfico, packaging de la línea y papelería. Dirección del shooting de producto.",
+          "resultado": "",
+          "imagenes": [
+            {
+              "imagen": "imagenes/identity/identity-02.jpg"
+            },
+            {
+              "imagen": "imagenes/identity/identity-01.jpg"
+            },
+            {
+              "imagen": "imagenes/identity/identity-03.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Launch",
+      "subtitulo": "Campañas digitales",
+      "portada": "",
+      "proyectos": [
+        {
+          "titulo": "Lanzamiento",
+          "cliente": "App de movilidad",
+          "sector": "Tecnología",
+          "ano": "2024",
+          "rol": "Dirección de arte de campaña",
+          "descripcion": "Pendiente de material.",
+          "resultado": "",
+          "imagenes": [
+            {
+              "imagen": "imagenes/05-lanzamiento-digital.jpg"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "titulo": "Tipografía",
+      "subtitulo": "Editorial",
+      "portada": "",
+      "proyectos": [
+        {
+          "titulo": "Specimen",
+          "cliente": "Fundición tipográfica",
+          "sector": "Editorial",
+          "ano": "2023",
+          "rol": "Dirección editorial",
+          "descripcion": "Pendiente de material.",
+          "resultado": "",
+          "imagenes": [
+            {
+              "imagen": "imagenes/04-editorial-tipografia.jpg"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
