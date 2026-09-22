@@ -45,7 +45,9 @@
             {
               "imagen": "imagenes/subidas/51f265255356381.6a9e7579e2854.webp"
             }
-          ]
+          ],
+          "ano": "2026",
+          "rol": "Diseñadora"
         }
       ]
     },
@@ -130,7 +132,7 @@
     },
     {
       "nombre": "linkedin",
-      "url": "https://linkedin.com/"
+      "url": "https://www.linkedin.com/in/luziayuste/"
     }
   ],
   "ciudad": "Madrid",
