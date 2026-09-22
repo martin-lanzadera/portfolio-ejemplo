@@ -28,7 +28,7 @@ collections:
         file: "contenido.json"
         format: "json"
         fields:
-          - { label: "Nombre arriba a la izquierda (marca)", name: "marca", widget: "string", hint: "Ej. Art by Luzia" }
+          - { label: "Nombre arriba a la izquierda (marca)", name: "marca", widget: "string", hint: "Pon entre asteriscos lo que quieras en negrita. Ej: Art by *Luzia*" }
           - { label: "Nombre completo", name: "nombre", widget: "string" }
           - { label: "Rol", name: "rol", widget: "string", hint: "Ej. Directora de arte" }
           - { label: "Ciudad", name: "ciudad", widget: "string" }
