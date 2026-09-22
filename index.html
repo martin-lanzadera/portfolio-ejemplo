@@ -77,18 +77,14 @@
   .head span{color:var(--muted);font-size:13px;flex-basis:100%;padding-left:62px}
   .thumbs{max-width:1100px}
 
-  /* ---- cascada de proyectos de una vertical ---- */
-  .cascade{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:22px}
-  .cascade a{display:block;grid-column:span 6}
-  .cascade a:first-child{grid-column:span 12}
-  .cascade a:nth-child(3n+2):not(:first-child){grid-column:span 7}
-  .cascade a:nth-child(3n):not(:first-child){grid-column:span 5}
-  .cascade img{width:100%;aspect-ratio:16/10;object-fit:cover;filter:grayscale(1);transition:filter .3s,transform .5s}
-  .cascade a:first-child img{aspect-ratio:21/9}
+  /* ---- cascada de proyectos de una vertical: todas las portadas iguales, a ancho completo, recortadas para encajar ---- */
+  .cascade{max-width:1100px;margin:0 auto;display:grid;gap:36px}
+  .cascade a{display:block}
+  .cascade img{width:100%;aspect-ratio:21/9;object-fit:cover;object-position:center;filter:grayscale(1);transition:filter .3s,transform .5s;background:var(--line)}
   .cascade a:hover img{filter:none;transform:scale(1.01)}
-  .cascade .t{display:flex;justify-content:space-between;gap:12px;padding-top:10px;font-size:13px;color:var(--muted)}
-  .cascade .t b{color:var(--ink);font-weight:800;font-size:clamp(18px,1.6vw,24px);letter-spacing:-.02em;display:block}
-  @media (max-width:700px){.cascade a,.cascade a:nth-child(n){grid-column:span 12}}
+  .cascade .t{display:flex;justify-content:space-between;gap:12px;padding-top:12px;font-size:13px;color:var(--muted)}
+  .cascade .t b{color:var(--ink);font-weight:800;font-size:clamp(20px,2vw,28px);letter-spacing:-.02em;display:block}
+  @media (max-width:700px){.cascade img{aspect-ratio:4/3}}
 
   /* ---- ficha de proyecto ---- */
   .ficha{max-width:1100px;margin:0 auto;display:grid;gap:18px}
