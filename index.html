@@ -256,13 +256,26 @@
   .entry img{width:100%;max-height:58vh;object-fit:cover;display:block}
   .entry a:hover h3{font-style:italic}
   /* sobre mí */
-  :root[data-skin="editorial"] .end .inner{width:100%;max-width:1100px;margin:0 auto;padding:0}
-  :root[data-skin="editorial"] .end h2{font-family:var(--serif);font-weight:400}
+  :root[data-skin="editorial"] .end .inner{width:100%;max-width:none;margin:0;padding:0;grid-template-columns:1.1fr 1fr;gap:clamp(32px,6vw,100px);align-items:start}
+  :root[data-skin="editorial"] .end.sin-foto .inner{grid-template-columns:1.1fr 1fr}
+  .ed-about .l h2{font-family:var(--serif);font-weight:400;font-size:clamp(48px,7vw,120px);line-height:.95;letter-spacing:-.03em;margin:0 0 32px;text-wrap:balance}
+  .ed-about .l h2 em{font-style:italic;color:var(--muted)}
+  .ed-about .l img{width:min(240px,45%);aspect-ratio:3/4;object-fit:cover;filter:none}
+  .ed-about .r{padding-top:clamp(8px,1.2vw,20px)}
+  .ed-about .bio{font-family:var(--serif);font-size:clamp(20px,1.9vw,28px);line-height:1.35;margin:0 0 26px;max-width:32ch;color:var(--ink)}
+  .ed-about .caps{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin:0 0 40px}
+  .ed-about .mail{font-family:var(--serif);font-weight:400;font-size:clamp(24px,2.4vw,36px);border-bottom:1px solid var(--ink);display:inline-block}
+  .ed-about .end-links{margin-top:22px}
+  .ed-about .r .fx:nth-child(2){transition-delay:.15s}.ed-about .r .fx:nth-child(3){transition-delay:.3s}.ed-about .r .fx:nth-child(4){transition-delay:.4s}
   :root[data-skin="editorial"] .end img{filter:none}
   :root[data-skin="editorial"] .head h2,:root[data-skin="editorial"] .cascade .t b{font-family:var(--serif);font-weight:400}
   :root[data-skin="editorial"] .cascade img,:root[data-skin="editorial"] .thumbs img{filter:none}
   :root[data-skin="editorial"] .head .x{border-color:var(--ink)}
   @media (max-width:820px){
+    :root[data-skin="editorial"] .end .inner,:root[data-skin="editorial"] .end.sin-foto .inner{grid-template-columns:1fr;gap:24px}
+    .ed-about .l h2{font-size:44px;margin-bottom:18px}
+    .ed-about .l img{width:140px}
+    .ed-about .bio{font-size:18px}
     .ed-vert{grid-template-columns:1fr;align-content:start;gap:22px}
     .ed-vert h2{font-size:clamp(48px,14vw,80px)}
     .mini{grid-template-columns:1fr 1fr;gap:10px}
@@ -401,11 +414,13 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
             <span><b>${p.titulo}</b>${p.cliente || ''} · ${p.ano}</span>
           </a>`).join('')}
         </div>`, 's'+vi)).join('') +
-      step('end' + (C.retrato ? '' : ' sin-foto'), `<div class="inner">
-        ${C.retrato ? `<img class="fx" src="${C.retrato}" alt="${C.nombre}">` : ''}
-        <div>
-          <h2 class="fx">${C.rol}<br>en ${C.ciudad}</h2>
-          <p class="fx">${C.bio}</p>
+      step('end' + (C.retrato ? '' : ' sin-foto'), `<div class="inner ed-about">
+        <div class="l">
+          <h2 class="fx">${C.rol}<br><em>en ${C.ciudad}</em></h2>
+          ${C.retrato ? `<img class="fx" src="${C.retrato}" alt="${C.nombre}">` : ''}
+        </div>
+        <div class="r">
+          <p class="fx bio">${C.bio}</p>
           <p class="fx caps">${C.capacidades}</p>
           <a class="fx mail" href="mailto:${C.email}">${C.email}</a>
           <div class="fx end-links">${Object.entries(C.enlaces).map(([k,v]) => `<a href="${v}" target="_blank" rel="noopener">${k}</a>`).join('')}</div>
