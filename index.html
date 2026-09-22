@@ -201,7 +201,7 @@
   /* pasos: una pantalla por elemento; en modo fade, scroll encajado */
   :root[data-skin="editorial"][data-nav="fade"] .show{scroll-snap-type:y mandatory}
   :root[data-skin="editorial"][data-nav="scroll"] .show{scroll-snap-type:none}
-  .step{min-height:100%;box-sizing:border-box;scroll-snap-align:start;display:grid;align-content:center;padding:calc(env(safe-area-inset-top,0px) + 100px) clamp(96px,10vw,180px) 80px}
+  .step{min-height:100%;box-sizing:border-box;scroll-snap-align:start;display:grid;align-content:center;padding:calc(env(safe-area-inset-top,0px) + 100px) clamp(80px,9vw,160px) 80px clamp(140px,12vw,220px)}
   [data-nav="scroll"] .step{min-height:0;padding-top:40px;padding-bottom:40px}
   [data-nav="scroll"] .ed-hero{min-height:70vh}
   /* fundido */
@@ -216,7 +216,16 @@
   .ed-hero h1{font-family:var(--serif);font-weight:400;font-size:clamp(56px,10vw,160px);line-height:.95;letter-spacing:-.02em;margin:0 0 18px;text-wrap:balance}
   .ed-hero p{margin:0;font-size:clamp(15px,1.3vw,19px);color:var(--muted);font-style:italic;font-family:var(--serif)}
   .ed-hero .caps{margin-top:28px;font-style:normal;font-family:var(--font);font-size:12px;letter-spacing:.18em;text-transform:uppercase}
-  /* portada de vertical */
+  /* portada de vertical: título a la izquierda, miniaturas a la derecha */
+  .ed-vert{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center}
+  .mini{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-content:center}
+  .mini.one{grid-template-columns:1fr}
+  .mini a{display:block;position:relative;transform:translateY(18px)}
+  .mini img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1);transition:filter .45s ease,transform .6s ease;display:block}
+  .mini.one img{aspect-ratio:3/2}
+  .mini a:hover img,.mini a:focus-visible img{filter:none;transform:scale(1.015)}
+  .mini span{display:block;padding-top:8px;font-size:12px;color:var(--muted)}
+  .mini span b{display:block;font-family:var(--serif);font-weight:400;font-size:18px;color:var(--ink);letter-spacing:-.01em}
   .ed-vert .n{font-size:13px;letter-spacing:.2em;color:var(--muted);margin-bottom:14px}
   .ed-vert h2{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(64px,12vw,200px);line-height:.92;letter-spacing:-.03em}
   .ed-vert h2 a{border-bottom:2px solid transparent}
@@ -234,6 +243,13 @@
   :root[data-skin="editorial"] .head h2,:root[data-skin="editorial"] .cascade .t b{font-family:var(--serif);font-weight:400}
   :root[data-skin="editorial"] .cascade img,:root[data-skin="editorial"] .thumbs img{filter:none}
   :root[data-skin="editorial"] .head .x{border-color:var(--ink)}
+  @media (max-width:820px){
+    .ed-vert{grid-template-columns:1fr;align-content:start;gap:22px}
+    .ed-vert h2{font-size:clamp(48px,14vw,80px)}
+    .mini{grid-template-columns:1fr 1fr;gap:10px}
+    .mini img{filter:none}
+    .mini span b{font-size:15px}
+  }
   @media (max-width:700px){
     .step{padding:calc(env(safe-area-inset-top,0px) + 84px) 20px 90px}
     .entry img{max-height:50vh}
@@ -330,15 +346,19 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
     const step = (cls, inner, id) => `<section class="step ${cls}" ${id ? `id="${id}"` : ''}>${inner}</section>`;
     $('show').innerHTML =
       step('ed-hero', `<h1 class="fx">${C.nombre}</h1><p class="fx">${C.rol} · ${C.ciudad}</p><p class="fx caps">${C.capacidades}</p>`, 's0') +
-      V.map((v,vi) =>
-        step('ed-vert', `<div class="fx n">${pad(vi+1)}</div><h2 class="fx"><a href="#s${vi}" data-vert="${vi}">${v.titulo}</a></h2><p class="fx sub">${v.subtitulo || ''} · ${v.proyectos.length} ${v.proyectos.length === 1 ? 'proyecto' : 'proyectos'}</p>`, 's'+vi) +
-        v.proyectos.map((p,pi) =>
-          step('entry', `<a href="#s${vi}" data-open="${vi}:${pi}">
-            <div class="fx meta"><span>${v.titulo}</span><span>${p.cliente || ''}</span><span>${p.ano}</span></div>
-            <h3 class="fx">${p.titulo}</h3>
-            <img class="fx" src="${p.imagenes[0]}" alt="${p.titulo}" loading="lazy">
-          </a>`)).join('')
-      ).join('') +
+      V.map((v,vi) => step('ed-vert', `
+        <div class="vt">
+          <div class="fx n">${pad(vi+1)}</div>
+          <h2 class="fx"><a href="#s${vi}" data-vert="${vi}">${v.titulo}</a></h2>
+          <p class="fx sub">${v.subtitulo || ''} · ${v.proyectos.length} ${v.proyectos.length === 1 ? 'proyecto' : 'proyectos'}</p>
+        </div>
+        <div class="mini ${v.proyectos.length === 1 ? 'one' : ''}">
+          ${v.proyectos.map((p,pi) => `
+          <a class="fx" href="#s${vi}" data-open="${vi}:${pi}" style="transition-delay:${.45 + pi * .12}s">
+            <img src="${p.imagenes[0]}" alt="${p.titulo}" loading="lazy">
+            <span><b>${p.titulo}</b>${p.cliente || ''} · ${p.ano}</span>
+          </a>`).join('')}
+        </div>`, 's'+vi)).join('') +
       step('end', `<div class="inner">
         <img class="fx" src="${C.retrato}" alt="${C.nombre}">
         <div>
@@ -349,11 +369,17 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
           <div class="fx end-links">${Object.entries(C.enlaces).map(([k,v]) => `<a href="${v}" target="_blank" rel="noopener">${k}</a>`).join('')}</div>
         </div>
       </div>`, 's'+V.length);
-    // cada paso aparece con fundido al entrar (y vuelve a fundirse si se sube)
+
     const steps = [...document.querySelectorAll('.step')];
+    let cur = 0;
     if (FADE && 'IntersectionObserver' in window) {
-      const io = new IntersectionObserver(es => es.forEach(e => e.target.classList.toggle('in', e.intersectionRatio > .5)), {root: $('show'), threshold: [.5]});
+      const io = new IntersectionObserver(es => es.forEach(e => { const on = e.intersectionRatio >= .5; e.target.classList.toggle('in', on); if (on) cur = steps.indexOf(e.target); }), {root: $('show'), threshold: [.5, .75, 1]});
       steps.forEach(st => io.observe(st));
+      // un gesto = una pantalla (rueda / trackpad / teclado), por fuerte que sea
+      let lock = false;
+      const go = d => { const n = Math.min(steps.length - 1, Math.max(0, cur + d)); if (n === cur) return; lock = true; cur = n; steps[n].scrollIntoView({behavior:'smooth', block:'start'}); setTimeout(() => { lock = false; steps[n].classList.add('in'); }, 950); };
+      $('show').addEventListener('wheel', e => { if (document.querySelector('.overlay.open')) return; e.preventDefault(); if (lock || Math.abs(e.deltaY) < 6) return; go(e.deltaY > 0 ? 1 : -1); }, {passive:false});
+      document.addEventListener('keydown', e => { if (document.querySelector('.overlay.open')) return; if (['ArrowDown','PageDown',' '].includes(e.key)) { e.preventDefault(); go(1); } if (['ArrowUp','PageUp'].includes(e.key)) { e.preventDefault(); go(-1); } });
     } else steps.forEach(st => st.classList.add('in'));
     steps[0].classList.add('in');
   }
