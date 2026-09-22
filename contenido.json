@@ -1,25 +1,4 @@
 {
-  "marca": "Art by Luzia",
-  "nombre": "Lucía Serrano",
-  "rol": "Directora de arte",
-  "ciudad": "Madrid",
-  "email": "hola@luciaserrano.com",
-  "enlaces": [
-    {
-      "nombre": "instagram",
-      "url": "https://instagram.com/"
-    },
-    {
-      "nombre": "linkedin",
-      "url": "https://linkedin.com/"
-    },
-    {
-      "nombre": "behance",
-      "url": "https://behance.net/"
-    }
-  ],
-  "retrato": "imagenes/retrato.jpg",
-  "bio": "Doce años dirigiendo arte en agencia y en cliente. Campañas de moda para retail nacional, identidad para instituciones culturales y lanzamientos digitales con equipos de hasta quince personas. Trabajo desde el concepto hasta la producción.",
   "capacidades": "Concepto · Campañas 360 · Identidad · Editorial · Dirección de shooting · Packaging",
   "verticales": [
     {
@@ -47,6 +26,24 @@
             },
             {
               "imagen": "imagenes/branding/branding-03.jpg"
+            }
+          ]
+        },
+        {
+          "titulo": "Proyecto Arábica",
+          "cliente": "ARABICA",
+          "imagenes": [
+            {
+              "imagen": "imagenes/subidas/e76dd6255356381.6a9e7579ed509.webp"
+            },
+            {
+              "imagen": "imagenes/subidas/051118255356381.6a9e757a107da.webp"
+            },
+            {
+              "imagen": "imagenes/subidas/ba2121255356381.6a9e7579f2a51.webp"
+            },
+            {
+              "imagen": "imagenes/subidas/51f265255356381.6a9e7579e2854.webp"
             }
           ]
         }
@@ -121,5 +118,22 @@
         }
       ]
     }
-  ]
+  ],
+  "bio": "Doce años dirigiendo arte en agencia y en cliente. Campañas de moda para retail nacional, identidad para instituciones culturales y lanzamientos digitales con equipos de hasta quince personas. Trabajo desde el concepto hasta la producción.",
+  "nombre": "Lucía Serrano",
+  "retrato": "imagenes/retrato.jpg",
+  "rol": "Directora de arte",
+  "enlaces": [
+    {
+      "nombre": "instagram",
+      "url": "https://instagram.com/"
+    },
+    {
+      "nombre": "linkedin",
+      "url": "https://linkedin.com/"
+    }
+  ],
+  "ciudad": "Madrid",
+  "marca": "Art by Luzia",
+  "email": "hola@luciaserrano.com"
 }
