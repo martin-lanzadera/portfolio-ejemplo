@@ -14,7 +14,6 @@ backend:
 locale: es
 site_url: /
 display_url: /
-logo_url: /imagenes/retrato.jpg
 
 media_folder: "imagenes/subidas"      # dónde se guardan las fotos que sube desde el panel
 public_folder: "imagenes/subidas"
@@ -35,7 +34,7 @@ collections:
           - { label: "Rol", name: "rol", widget: "string", hint: "Ej. Directora de arte" }
           - { label: "Ciudad", name: "ciudad", widget: "string" }
           - { label: "Email de contacto", name: "email", widget: "string" }
-          - { label: "Retrato", name: "retrato", widget: "image", hint: "Vertical, buena resolución" }
+          - { label: "Retrato (opcional)", name: "retrato", widget: "image", required: false, hint: "Vertical, buena resolución. Si lo dejas vacío, la web se monta sin foto." }
           - { label: "Bio", name: "bio", widget: "text", hint: "2-3 frases" }
           - { label: "Capacidades", name: "capacidades", widget: "string", hint: "Separadas por · (ej. Concepto · Identidad · Editorial)" }
           - label: "Enlaces"
