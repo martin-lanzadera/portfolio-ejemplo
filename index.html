@@ -14,7 +14,8 @@
   @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
   /* ---- chrome ---- */
-  .brand{position:fixed;top:calc(env(safe-area-inset-top,0px) + 28px);left:clamp(16px,3.5vw,52px);z-index:20;font-weight:800;font-size:26px;letter-spacing:-.02em}
+  .brand{position:fixed;top:calc(env(safe-area-inset-top,0px) + 28px);left:clamp(16px,3.5vw,52px);z-index:20;font-weight:400;font-size:26px;letter-spacing:-.02em}
+  .brand b{font-weight:800}
   .brand span{color:var(--muted)}
   .menu-btn{position:fixed;top:calc(env(safe-area-inset-top,0px) + 30px);right:clamp(16px,3.5vw,52px);z-index:30;background:none;border:0;color:var(--ink);cursor:pointer;padding:6px;font:inherit;font-size:12px;letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:12px}
   .menu-btn .bars{display:inline-flex;flex-direction:column;gap:5px;width:22px}
@@ -49,7 +50,9 @@
   .slide .cap a:focus-visible h2{outline:2px solid var(--ink);outline-offset:8px}
 
   /* ---- final slide: sobre mí + contacto ---- */
-  .slide.end{place-items:center}
+  .slide.end{place-items:center;overflow-y:auto;scrollbar-width:none}
+  .slide.end::-webkit-scrollbar{display:none}
+  .end .inner{padding:96px 0 120px;box-sizing:border-box}
   .end .inner{width:min(66vw,1000px);display:grid;grid-template-columns:220px 1fr;gap:clamp(24px,4vw,64px);align-items:end}
   .end img{aspect-ratio:3/4;object-fit:cover;filter:grayscale(1)}
   .end h2{font-weight:800;font-size:clamp(34px,4.5vw,64px);line-height:1;letter-spacing:-.03em;margin:0 0 18px}
@@ -143,7 +146,8 @@
     .ficha .meta{margin:0 16px 4px;grid-template-columns:1fr 1fr;gap:12px 16px}
     .ficha .txt,.ficha .res,.ficha .back{margin-left:16px;margin-right:16px}
     /* ficha final */
-    .end .inner{width:100%;grid-template-columns:1fr;gap:20px;padding:80px 20px calc(env(safe-area-inset-bottom,0px) + 90px);align-items:start}
+    .slide.end{place-items:start}
+    .end .inner{width:100%;grid-template-columns:1fr;gap:20px;padding:96px 24px calc(env(safe-area-inset-bottom,0px) + 110px);align-items:start;min-height:100%}
     .end img{max-width:140px}
     .end h2{font-size:36px}
     .end p{font-size:15px}
@@ -173,7 +177,8 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
   C.verticales.forEach(v => (v.proyectos || []).forEach(p => p.imagenes = (p.imagenes || []).map(x => typeof x === 'string' ? x : x.imagen).filter(Boolean)));
   const V = C.verticales.filter(v => v.proyectos && v.proyectos.length);
   const cover = v => v.portada || (v.proyectos[0] && v.proyectos[0].imagenes[0]) || '';
-  $('brand').innerHTML = (C.marca || C.nombre) + '<span>.</span>';
+  const marca = (C.marca || C.nombre).replace(/[<>]/g,'');
+  $('brand').innerHTML = (/\*[^*]+\*/.test(marca) ? marca.replace(/\*([^*]+)\*/g,'<b>$1</b>') : '<b>' + marca + '</b>') + '<span>.</span>';
   $('tot').textContent = pad(V.length);
   $('social').innerHTML = Object.entries(C.enlaces).map(([k,v]) => `<a href="${v}" target="_blank" rel="noopener">${k}</a>`).join('');
 

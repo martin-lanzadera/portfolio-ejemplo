@@ -1,0 +1,73 @@
+# Panel de contenido (Decap CMS). Solo hay que cambiar "repo" al crear la web de cada clienta.
+backend:
+  name: github
+  repo: martin-lanzadera/portfolio-ejemplo
+  branch: main
+  base_url: https://api.netlify.com         # Netlify hace de intermediario para el login con GitHub
+  commit_messages:
+    create: "Nuevo: {{slug}}"
+    update: "Actualiza: {{slug}}"
+    delete: "Borra: {{slug}}"
+    uploadMedia: "Sube imagen {{path}}"
+    deleteMedia: "Borra imagen {{path}}"
+
+locale: es
+site_url: /
+display_url: /
+logo_url: /imagenes/retrato.jpg
+
+media_folder: "imagenes/subidas"      # dónde se guardan las fotos que sube desde el panel
+public_folder: "imagenes/subidas"
+
+collections:
+  - name: "contenido"
+    label: "Mi portfolio"
+    files:
+      - name: "contenido"
+        label: "Portfolio"
+        file: "contenido.json"
+        format: "json"
+        fields:
+          - { label: "Nombre arriba a la izquierda (marca)", name: "marca", widget: "string", hint: "Pon entre asteriscos lo que quieras en negrita. Ej: Art by *Luzia*" }
+          - { label: "Nombre completo", name: "nombre", widget: "string" }
+          - { label: "Rol", name: "rol", widget: "string", hint: "Ej. Directora de arte" }
+          - { label: "Ciudad", name: "ciudad", widget: "string" }
+          - { label: "Email de contacto", name: "email", widget: "string" }
+          - { label: "Retrato", name: "retrato", widget: "image", hint: "Vertical, buena resolución" }
+          - { label: "Bio", name: "bio", widget: "text", hint: "2-3 frases" }
+          - { label: "Capacidades", name: "capacidades", widget: "string", hint: "Separadas por · (ej. Concepto · Identidad · Editorial)" }
+          - label: "Enlaces"
+            name: "enlaces"
+            widget: "list"
+            summary: "{{fields.nombre}}"
+            fields:
+              - { label: "Nombre", name: "nombre", widget: "string", hint: "instagram, linkedin, behance..." }
+              - { label: "URL", name: "url", widget: "string" }
+          - label: "Verticales"
+            name: "verticales"
+            widget: "list"
+            summary: "{{fields.titulo}}"
+            hint: "Cada vertical es una pantalla de la web. El orden aquí es el orden en la web. Arrastra para reordenar."
+            fields:
+              - { label: "Título", name: "titulo", widget: "string", hint: "1-2 palabras: Branding, Identity, Packaging..." }
+              - { label: "Subtítulo", name: "subtitulo", widget: "string", required: false }
+              - { label: "Portada de la vertical", name: "portada", widget: "image", required: false, hint: "Si se deja vacía, usa la primera foto del primer proyecto" }
+              - label: "Proyectos"
+                name: "proyectos"
+                widget: "list"
+                summary: "{{fields.titulo}} · {{fields.ano}}"
+                fields:
+                  - { label: "Título", name: "titulo", widget: "string" }
+                  - { label: "Cliente", name: "cliente", widget: "string" }
+                  - { label: "Sector", name: "sector", widget: "string", required: false }
+                  - { label: "Año", name: "ano", widget: "string" }
+                  - { label: "Mi papel", name: "rol", widget: "string", hint: "Qué hiciste tú en el proyecto" }
+                  - { label: "Descripción", name: "descripcion", widget: "text", required: false }
+                  - { label: "Resultado", name: "resultado", widget: "string", required: false, hint: "Una frase. Sale destacada." }
+                  - label: "Imágenes"
+                    name: "imagenes"
+                    widget: "list"
+                    summary: "{{fields.imagen}}"
+                    hint: "La primera es la portada del proyecto"
+                    fields:
+                      - { label: "Imagen", name: "imagen", widget: "image" }
