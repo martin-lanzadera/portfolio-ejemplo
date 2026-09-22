@@ -1,6 +1,6 @@
 {
   "capacidades": "Concepto · Campañas 360 · Identidad · Editorial · Dirección de shooting · Packaging",
-  "navegacion": "fade",
+  "navegacion": null,
   "verticales": [
     {
       "titulo": "Branding",
@@ -139,5 +139,5 @@
   "ciudad": "Madrid",
   "marca": "Art by *Luzia*",
   "email": "hola@luciaserrano.com",
-  "skin": "showcase"
+  "skin": "mosaico"
 }
