@@ -1,7 +1,7 @@
 # Panel de contenido (Decap CMS). Solo hay que cambiar "repo" al crear la web de cada clienta.
 backend:
   name: github
-  repo: CAMBIAR/usuario-o-nombre-del-repo   # p. ej. luzia/portfolio
+  repo: martin-lanzadera/portfolio-ejemplo
   branch: main
   base_url: https://api.netlify.com         # Netlify hace de intermediario para el login con GitHub
   commit_messages:
