@@ -157,37 +157,55 @@
   }
 
   :root[data-skin="mosaico"] body::before,:root[data-skin="editorial"] body::before{content:"";position:fixed;left:0;right:0;top:0;height:calc(env(safe-area-inset-top,0px) + 92px);background:linear-gradient(var(--bg) 55%,transparent);z-index:15;pointer-events:none}
-  /* ================= SKIN: MOSAICO (columna + bloques) ================= */
+  /* ================= SKIN: MOSAICO (columna fija + tetris por vertical) ================= */
   :root[data-skin="mosaico"] .progress,:root[data-skin="mosaico"] .grid-btn,:root[data-skin="mosaico"] .social,:root[data-skin="mosaico"] .brand,:root[data-skin="mosaico"] body::before{display:none}
+  :root[data-skin="mosaico"] .menu-btn{display:none}
   :root[data-skin="mosaico"] .show{scroll-snap-type:none}
-  .split{height:100%;display:grid;grid-template-columns:minmax(300px,30%) 1fr;gap:6px;padding:6px;box-sizing:border-box;background:var(--bg)}
-  .who{display:flex;flex-direction:column;justify-content:space-between;gap:20px;padding:clamp(20px,2.6vw,40px);background:var(--surface,#141416);min-height:0}
-  .who h1{margin:0;font-size:clamp(28px,2.6vw,42px);line-height:1.05;letter-spacing:-.03em;font-weight:400}
+  .split{min-height:100%;display:grid;grid-template-columns:minmax(280px,26%) 1fr;gap:6px;padding:6px;box-sizing:border-box;background:var(--bg);align-items:start}
+  .who{position:sticky;top:6px;height:calc(100vh - 12px);box-sizing:border-box;display:flex;flex-direction:column;gap:22px;padding:clamp(20px,2.4vw,36px);background:var(--surface,#141416)}
+  .who h1{margin:0;font-size:clamp(24px,2.2vw,34px);line-height:1.05;letter-spacing:-.03em;font-weight:400}
   .who h1 b{font-weight:800}
   .who h1 span{color:var(--muted)}
-  .who .rol{margin:8px 0 0;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-  .who img{width:100%;flex:1;min-height:0;object-fit:cover;filter:grayscale(1);aspect-ratio:auto}
-  .who .bio{margin:0 0 14px;font-size:14px;line-height:1.55;color:var(--ink);opacity:.85;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-  .who .mail{font-weight:800;font-size:clamp(16px,1.3vw,20px);letter-spacing:-.01em;border-bottom:2px solid var(--ink)}
-  .who .end-links{margin-top:14px;font-size:11px}
-  .blocks{display:grid;grid-template-columns:repeat(var(--cols),1fr);grid-auto-rows:1fr;grid-auto-flow:dense;gap:6px;min-height:0}
-  .block{position:relative;display:block;overflow:hidden;background:var(--line);min-height:0}
-  .block.tall{grid-row:span 2}
-  .block img{width:100%;height:100%;object-fit:cover;filter:grayscale(.6) contrast(1.05);transition:transform .7s ease,filter .4s}
-  .block:hover img,.block:focus-visible img{transform:scale(1.04);filter:none}
-  .block .lbl{position:absolute;left:0;right:0;bottom:0;padding:clamp(16px,1.8vw,28px);color:#fff;font-size:12px;letter-spacing:.08em;text-transform:uppercase;background:linear-gradient(transparent,rgba(0,0,0,.7))}
-  .block .lbl b{display:block;text-transform:none;letter-spacing:-.03em;font-weight:800;font-size:clamp(28px,3.4vw,56px);line-height:1;margin-bottom:6px}
-  :root[data-skin="mosaico"] .menu-btn{mix-blend-mode:difference}
-  @media (max-width:820px){
-    .split{height:auto;min-height:100%;grid-template-columns:1fr;padding:0;gap:4px}
-    .who{padding:calc(env(safe-area-inset-top,0px) + 20px) 20px 24px;display:grid;grid-template-columns:96px 1fr;grid-template-areas:"img top" "img bottom";column-gap:16px;row-gap:8px}
-    .who .who-top{grid-area:top}.who img{grid-area:img;aspect-ratio:3/4;height:auto}.who .who-bottom{grid-area:bottom}
-    .who h1{font-size:26px}
-    .who .bio{-webkit-line-clamp:3;font-size:13px}
-    .who .end-links{margin-top:8px}
-    .blocks{grid-template-columns:1fr 1fr;grid-auto-rows:34vw}
-    .block.tall{grid-row:span 1}
-    .block .lbl{padding:12px}.block .lbl b{font-size:22px}
+  .who .rol{margin:8px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+  .who img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:grayscale(1)}
+  .index{display:flex;flex-direction:column;flex:1;min-height:0}
+  .index a{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-top:1px solid var(--line);font-size:clamp(17px,1.3vw,21px);font-weight:500;letter-spacing:-.01em;color:var(--muted);transition:color .25s,padding-left .25s}
+  .index a span{font-size:11px;letter-spacing:.14em;color:var(--muted);width:22px}
+  .index a small{margin-left:auto;font-size:11px;color:var(--muted)}
+  .index a:hover,.index a.on{color:var(--ink);padding-left:6px}
+  .index a.on span{color:var(--ink)}
+  .who .mail{font-weight:800;font-size:clamp(15px,1.2vw,18px);letter-spacing:-.01em;border-bottom:2px solid var(--ink);align-self:flex-start}
+  .who .end-links{margin-top:12px;font-size:11px}
+  .wall{display:flex;flex-direction:column;gap:6px;min-width:0}
+  .band{background:var(--surface,#141416);padding:clamp(20px,2.4vw,36px)}
+  .band-h{display:flex;align-items:baseline;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:clamp(16px,2vw,28px)}
+  .band-h h2{margin:0;font-size:clamp(40px,5.5vw,84px);line-height:.95;letter-spacing:-.04em;font-weight:800}
+  .band-h h2 a:hover{color:var(--muted)}
+  .band-h p{margin:0;font-size:13px;color:var(--muted);letter-spacing:.06em}
+  .tetris{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(160px,17vw);grid-auto-flow:dense;gap:6px}
+  .tile{position:relative;display:block;overflow:hidden;background:var(--line)}
+  .tile.wide{grid-column:span 4}
+  .tile.half{grid-column:span 2}
+  .tile.big{grid-column:span 2;grid-row:span 2}
+  .tile.small{grid-column:span 2}
+  .tile img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform .7s ease,filter .4s}
+  .tile:hover img,.tile:focus-visible img{filter:none;transform:scale(1.03)}
+  .tile .lbl{position:absolute;left:0;right:0;bottom:0;padding:18px;color:#fff;font-size:12px;letter-spacing:.06em;background:linear-gradient(transparent,rgba(0,0,0,.65))}
+  .tile .lbl b{display:block;font-size:clamp(18px,1.5vw,24px);font-weight:800;letter-spacing:-.02em}
+  :root[data-skin="mosaico"] .end{background:var(--surface,#141416);padding:clamp(20px,2.4vw,36px)}
+  :root[data-skin="mosaico"] .end .inner{width:100%;padding:20px 0}
+  @media (max-width:900px){
+    .split{grid-template-columns:1fr;padding:0;gap:4px}
+    .who{position:static;height:auto;display:grid;grid-template-columns:96px 1fr;grid-template-areas:"img top" "index index" "bottom bottom";column-gap:16px;row-gap:14px;padding:calc(env(safe-area-inset-top,0px) + 20px) 20px 20px}
+    .who .who-top{grid-area:top;align-self:center}.who img{grid-area:img;aspect-ratio:3/4}.index{grid-area:index}.who .who-bottom{grid-area:bottom}
+    .index{flex-direction:row;flex-wrap:wrap;gap:6px 18px}
+    .index a{border:0;padding:4px 0;font-size:15px}
+    .index a span,.index a small{display:none}
+    .band{padding:20px 12px}
+    .band-h h2{font-size:40px}
+    .tetris{grid-template-columns:1fr 1fr;grid-auto-rows:38vw;gap:4px}
+    .tile.wide,.tile.big{grid-column:span 2;grid-row:span 1}
+    .tile .lbl{padding:12px}.tile .lbl b{font-size:17px}
   }
 
   /* ================= SKIN: EDITORIAL ================= */
@@ -314,8 +332,14 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
   }
 
   if (SKIN === 'mosaico') {
-    // columna fija con la diseñadora + bloques de verticales que llenan la pantalla
-    const n = V.length, cols = n <= 4 ? 2 : 3;
+    // columna fija (diseñadora + índice de verticales) y a la derecha un tetris de proyectos por vertical
+    const shape = (n, i) => {            // forma de cada bloque según cuántos proyectos tiene la vertical
+      if (n === 1) return 'wide';        // 1: panorámico
+      if (n === 2) return 'half';        // 2: dos iguales
+      if (n === 3) return i === 0 ? 'big' : 'small';         // 3: uno grande + dos pequeños
+      if (n === 4) return 'half';        // 4: 2x2
+      return ['big','small','small','half','half'][i % 5];   // 5+: se repite el patrón
+    };
     $('show').innerHTML = `
     <section class="split" id="s0" data-i="0">
       <aside class="who">
@@ -324,20 +348,37 @@ fetch('contenido.json?v=' + Date.now()).then(r => r.json()).then(C => {
           <p class="rol">${C.rol} · ${C.ciudad}</p>
         </div>
         <img src="${C.retrato}" alt="${C.nombre}">
+        <nav class="index" aria-label="Verticales">
+          ${V.map((v,i) => `<a href="#v${i}" data-idx="${i}"><span>${pad(i+1)}</span>${v.titulo}<small>${v.proyectos.length}</small></a>`).join('')}
+          <a href="#s${V.length}" data-idx="${V.length}"><span>—</span>Sobre mí</a>
+        </nav>
         <div class="who-bottom">
-          <p class="bio">${C.bio}</p>
           <a class="mail" href="mailto:${C.email}">${C.email}</a>
           <div class="end-links">${Object.entries(C.enlaces).map(([k,v]) => `<a href="${v}" target="_blank" rel="noopener">${k}</a>`).join('')}</div>
         </div>
       </aside>
-      <div class="blocks" style="--cols:${cols}">
-        ${V.map((v,i) => `
-        <a class="block ${n % 2 && i === 0 ? 'tall' : ''}" href="#s0" data-vert="${i}">
-          <img src="${cover(v)}" alt="${v.titulo}">
-          <span class="lbl"><b>${v.titulo}</b>${v.subtitulo || ''} · ${v.proyectos.length} ${v.proyectos.length === 1 ? 'proyecto' : 'proyectos'}</span>
-        </a>`).join('')}
+      <div class="wall">
+        ${V.map((v,vi) => `
+        <section class="band" id="v${vi}" data-idx="${vi}">
+          <header class="band-h">
+            <h2><a href="#v${vi}" data-vert="${vi}">${v.titulo}</a></h2>
+            <p>${v.subtitulo || ''} · ${v.proyectos.length} ${v.proyectos.length === 1 ? 'proyecto' : 'proyectos'}</p>
+          </header>
+          <div class="tetris">
+            ${v.proyectos.map((p,pi) => `
+            <a class="tile ${shape(v.proyectos.length, pi)}" href="#v${vi}" data-open="${vi}:${pi}">
+              <img src="${p.imagenes[0]}" alt="${p.titulo}" ${vi ? 'loading="lazy"' : ''}>
+              <span class="lbl"><b>${p.titulo}</b>${p.cliente || ''} · ${p.ano}</span>
+            </a>`).join('')}
+          </div>
+        </section>`).join('')}
+        ${endHTML('end').replace('id="s' + V.length + '"', 'id="s' + V.length + '" data-idx="' + V.length + '"')}
       </div>
     </section>`;
+    // marcar en el índice la vertical visible
+    const bands = [...document.querySelectorAll('.wall [data-idx]')], links = [...document.querySelectorAll('.index a')];
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.dataset.idx === e.target.dataset.idx)); }), {root: $('show'), rootMargin: '-40% 0px -55% 0px'});
+    bands.forEach(bd => io.observe(bd));
   }
 
   if (SKIN === 'editorial') {
